@@ -1,4 +1,3 @@
-import QueryString from 'qs';
 import * as flightsGateway from './flightsGetWay';
 
 export const FLIGHTS_LIST_RECIEVED = 'FLIGHTS_LIST_RECIEVED';
@@ -22,9 +21,9 @@ export const findFlight = flightNumber => {
   return action;
 };
 
-export const getflightsList = () =>
+export const getflightsList = date =>
   function (dispatch) {
-    flightsGateway.fetchFlightsList().then(flightsList => {
+    flightsGateway.fetchFlightsListByDate(date).then(flightsList => {
       console.log(flightsList);
       dispatch(flightsListRecieved(flightsList.body.arrival, flightsList.body.departure));
     });

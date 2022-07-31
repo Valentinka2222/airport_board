@@ -25,7 +25,7 @@ const SearchFlights = ({ setValue, value, handleClick }) => {
         <Link
           onClick={handleClick}
           className="search-btn"
-          to={`/departures${value ? `?search=${value}` : ''}`}
+          to={`board/departures${value ? `?search=${value}` : ''}`}
         >
           SEARCH
         </Link>

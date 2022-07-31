@@ -9,7 +9,7 @@ const todoListElem = document.querySelector('#root');
 ReactDOM.render(
   <BrowserRouter>
     <Route path="/" component={App} />
-    <Redirect from="/" to="/departures" />
+    <Redirect from="/" to="/board" />
   </BrowserRouter>,
   todoListElem,
 );

@@ -2,7 +2,17 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Calendar from './Calendar';
-const Navigation = ({ handleClick, setDepartures, setArrivals, arrivals, departures }) => {
+const Navigation = ({
+  setIsActive,
+  onChangeCalendarDate,
+  handleGetDate,
+  handleClick,
+  setDepartures,
+  setArrivals,
+  arrivals,
+  departures,
+  calendarDate,
+}) => {
   return (
     <div className="navigation">
       <div className="navigation-btn">
@@ -14,6 +24,7 @@ const Navigation = ({ handleClick, setDepartures, setArrivals, arrivals, departu
         </button>
         <button
           onClick={() => {
+            setIsActive(false);
             setArrivals('white');
             setDepartures('');
           }}
@@ -26,7 +37,12 @@ const Navigation = ({ handleClick, setDepartures, setArrivals, arrivals, departu
           </span>
         </button>
       </div>
-      <Calendar />
+      <Calendar
+        calendarDate={calendarDate}
+        handleClick={handleClick}
+        onChangeCalendarDate={onChangeCalendarDate}
+        handleGetDate={handleGetDate}
+      />
     </div>
   );
 };

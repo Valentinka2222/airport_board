@@ -6,19 +6,24 @@ import { connect } from 'react-redux';
 import { flightListDepartureSelector } from '../flights/flights.selector';
 import { getflightsList } from '../flights/flights.action';
 
+const baseUrl = 'https://api.iev.aero/';
 class BoardDepartures extends Component {
+  constructor(props) {
+    super(props);
+
+    this.logo;
+  }
+
   componentDidMount() {
-    this.props.getflightsList();
+    this.props.getflightsList(this.props.searchDate);
   }
 
   render() {
     const { departure, value } = this.props;
 
-    let logo;
-    console.log(departure);
     let renderFlights = departure.map((row, index) => {
       Columns.map((col, index) => {
-        if (col.name === 'Destination' && row.status === 'DP') {
+        if (col.name === 'Destination') {
           col.accessor = 'airportToID.city_en';
         }
       });
@@ -52,7 +57,7 @@ class BoardDepartures extends Component {
             </thead>
             <tbody>
               {renderFlights.map((row, rowIndex) => {
-                logo = row.logo;
+                this.logo = row.logo;
                 return (
                   <tr className="board_table__item" key={row.ID}>
                     {Columns.map((col, index) => {
@@ -75,10 +80,17 @@ class BoardDepartures extends Component {
                       if (col.name === 'Airline') {
                         return (
                           <td className="logo" key={col.id}>
-                            <span>{row.codeShareData.map(el => el.airline.en.name)}</span>
+                            <span>
+                              {row.codeShareData.map(el => {
+                                if (el.airline.en.name === 'undefined') {
+                                  return;
+                                }
+                                return el.airline.en.name;
+                              })}
+                            </span>
                             <img
                               className="logo-airlines"
-                              src={`https://api.iev.aero${logo}`}
+                              src={`${baseUrl}${row.codeShareData[0].logo}`}
                               alt="Logo"
                             />
                           </td>

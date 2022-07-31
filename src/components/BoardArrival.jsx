@@ -5,18 +5,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { flightListArrivalSelector } from '../flights/flights.selector';
 import { getflightsList } from '../flights/flights.action';
-
+const baseUrl = 'https://api.iev.aero/';
 class BoardDepartures extends Component {
   componentDidMount() {
-    this.props.getflightsList();
+    this.props.getflightsList(this.props.searchDate);
   }
 
   render() {
-    const { arrival, value, setValue } = this.props;
+    const { arrival, value } = this.props;
 
     let renderFlights = arrival.map((row, index) => {
       Columns.map((col, index) => {
-        if (col.name === 'Destination' && row.status === 'LN') {
+        if (col.name === 'Destination') {
           col.accessor = 'airportFromID.city_en';
         }
       });
@@ -74,10 +74,17 @@ class BoardDepartures extends Component {
                       if (col.name === 'Airline') {
                         return (
                           <td className="logo" key={col.id}>
-                            <span>{row.codeShareData.map(el => el.airline.en.name)}</span>
+                            <span>
+                              {row.codeShareData.map(el => {
+                                if (el.airline.en.name === 'undefined') {
+                                  return;
+                                }
+                                return el.airline.en.name;
+                              })}
+                            </span>
                             <img
                               className="logo-airlines"
-                              src={`https://api.iev.aero${row.logo}`}
+                              src={`${baseUrl}${row.codeShareData[0].logo}`}
                               alt="Logo"
                             />
                           </td>
