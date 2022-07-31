@@ -1,6 +1,10 @@
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
-const SearchFlights = () => {
+const SearchFlights = ({ setValue, value, handleClick }) => {
+  const { search } = useLocation();
+  console.log(search);
+
   return (
     <div className="search-flights">
       <h2 className="title">SEARCH FLIGHT</h2>
@@ -11,13 +15,20 @@ const SearchFlights = () => {
         <form className="search-flights_container__search-lines" name="searchFlightsForm">
           <input
             className="search-input"
-            placeholder="Airline, destination or flight #"
             type="text"
+            placeholder="Airline, destination or flight #"
+            onChange={e => setValue(e.target.value)}
+            value={value}
           />
-          <button className="search-btn" type="submit">
-            SEARCH
-          </button>
         </form>
+
+        <Link
+          onClick={handleClick}
+          className="search-btn"
+          to={`/departures${value ? `?search=${value}` : ''}`}
+        >
+          SEARCH
+        </Link>
       </div>
     </div>
   );

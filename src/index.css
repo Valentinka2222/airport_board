@@ -1,58 +1,78 @@
 .navigation {
   display: flex;
+  position: relative;
   background-color: transparent;
   line-height: 60px;
   justify-content: space-between;
   list-style: none;
   margin: auto;
   width: 100%;
-  margin-top: 20px;
   max-width: 740px;
-  flex-direction: row;
   align-items: center;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
 .navigation_departures {
+  border: 1px solid transparent;
+  width: 58%;
+  border-top-left-radius: 0.25rem;
+  position: absolute;
+  padding-right: 100px;
   border: none;
-  background-attachment: fixed;
-  border-radius: 10px 50px 10px 10px;
-  max-width: 280px;
-  background-color: #1eb7ee;
-  color: #fff;
-  height: 60px;
-  text-align: center;
-  flex: 1;
-}
-
-.navigation_departures:hover {
-  background-color: #fff;
-  color: #1eb7ee;
-  z-index: 3;
-  max-width: 500px;
   transition: 0.3s ease-in-out;
-  border-radius: 10px 50px 0px 0px;
+  z-index: 1;
+  line-height: 60px;
+  color: #fff;
+  background-attachment: fixed;
+  border-top-left-radius: 8.25rem;
+  border-top-right-radius: 8.25rem;
+  background-color: #1eb7ee;
+  text-align: center;
 }
 
 .navigation_arrivals {
-  color: #fff;
+  position: absolute;
+  right: -3px;
+  z-index: 2;
+  border: 1px solid transparent;
+  width: 58%;
+  border-top-left-radius: 8.25rem;
+  border-top-right-radius: 8.25rem;
+  padding-left: 100px;
+  position: absolute;
+  right: -3px;
+  z-index: 2;
+  border: 1px solid transparent;
+  border-top-left-radius: 8.25rem;
+  border-top-right-radius: 8.25rem;
   border: none;
-  border-radius: 50px 10px 10px 10px;
-  max-width: 280px;
-  height: 60px;
+  transition: 0.3s ease-in-out;
+  border: 0;
+  line-height: 60px;
+  color: #fff;
+  background-attachment: fixed;
   background-color: #1eb7ee;
   text-align: center;
-  flex: 1;
 }
 
-.navigation_arrivals:hover {
+a {
+  text-decoration: none;
+}
+
+.navigation-btn {
+  display: flex;
+}
+
+.white {
+  border-top-left-radius: 8.25rem;
+  border-top-right-radius: 8.25rem;
   background-color: #fff;
   color: #1eb7ee;
   z-index: 3;
-  max-width: 500px;
-  border-radius: 50px 10px 0px 0px;
   transition: 0.3s ease-in-out;
 }
 
@@ -67,6 +87,7 @@
 }
 
 .search-flights {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -104,28 +125,61 @@
   margin: 0px 0px 8px;
 }
 
-.search-results {
+.board {
   display: flex;
   flex-direction: column;
   max-width: 740px;
   width: 100%;
   margin: auto;
+  margin-top: 97px;
+  flex-wrap: nowrap;
 }
 
-.search-results_table {
+.board_table {
+  text-indent: initial;
   border-collapse: collapse;
+  border: 0;
   height: 80px;
   background-color: #fff;
   padding: 0 30px;
+  white-space: nowrap;
 }
 
-.search-results_table__item {
+.board_table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.board_table th {
+  background-color: #fff !important;
+  color: lightgrey;
+  border: 0;
+  height: 80px;
+  background-color: #fff;
+  padding: 0;
+}
+
+.board_table tr {
   border-collapse: collapse;
   padding: 0;
   border: 0;
   padding: 0 30px;
   min-width: 60px;
   text-align: center;
+}
+
+.board_table td {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: wrap;
+}
+
+.board_table td:hover {
+  overflow: visible;
+}
+
+.board_table__head {
+  background-color: #f2f2f2 !important;
 }
 
 .search-btn {
@@ -169,6 +223,22 @@
   border: none;
 }
 
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: clip;
+  max-width: 110px;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+.logo:hover {
+  overflow: visible;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -207,4 +277,26 @@ body {
   color: #c0c0c0;
   font-weight: 150;
   font-size: 13px;
+}
+
+.logo-airlines {
+  width: 70px;
+  height: 50px;
+}
+
+.span {
+  line-height: 300px;
+  max-width: 745px;
+  background-color: #fff;
+  color: black;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+  margin-top: 23px;
+  text-align: center;
+  padding: auto;
+}
+
+.border-blue {
+  border-bottom: solid #1eb7ee 3px;
 }
