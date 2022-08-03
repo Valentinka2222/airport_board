@@ -8,8 +8,7 @@ const todoListElem = document.querySelector('#root');
 
 ReactDOM.render(
   <BrowserRouter>
-    <Route path="/" component={App} />
-    <Redirect from="/" to="/board" />
+    <App />
   </BrowserRouter>,
   todoListElem,
 );

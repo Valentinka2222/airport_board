@@ -2,12 +2,12 @@ import * as flightsGateway from './flightsGetWay';
 
 export const FLIGHTS_LIST_RECIEVED = 'FLIGHTS_LIST_RECIEVED';
 export const FIND_FLIGHT = 'FIND_FLIGHT';
-export const flightsListRecieved = (flightsListArrival, flightsListDeparture) => {
+export const flightsListRecieved = flightsList => {
   const action = {
     type: FLIGHTS_LIST_RECIEVED,
     payload: {
-      flightsListArrival,
-      flightsListDeparture,
+      flightsListArrival: flightsList.body.arrival,
+      flightsListDeparture: flightsList.body.departure,
     },
   };
   return action;
@@ -23,8 +23,7 @@ export const findFlight = flightNumber => {
 
 export const getflightsList = date =>
   function (dispatch) {
-    flightsGateway.fetchFlightsListByDate(date).then(flightsList => {
-      console.log(flightsList);
-      dispatch(flightsListRecieved(flightsList.body.arrival, flightsList.body.departure));
-    });
+    flightsGateway
+      .fetchFlightsListByDate(date)
+      .then(flightsList => dispatch(flightsListRecieved(flightsList)));
   };

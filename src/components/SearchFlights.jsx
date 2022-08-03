@@ -1,10 +1,7 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SearchFlights = ({ setValue, value, handleClick }) => {
-  const { search } = useLocation();
-  console.log(search);
-
   return (
     <div className="search-flights">
       <h2 className="title">SEARCH FLIGHT</h2>

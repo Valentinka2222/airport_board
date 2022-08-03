@@ -1,18 +1,32 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import * as qs from 'query-string';
+
+import { getflightsList } from '../flights/flights.action';
+
 import Calendar from './Calendar';
+import '../navigation.scss';
+
 const Navigation = ({
-  setIsActive,
   onChangeCalendarDate,
   handleGetDate,
   handleClick,
+  setSearchDate,
   setDepartures,
   setArrivals,
   arrivals,
   departures,
-  calendarDate,
+  searchDate,
+  activeBtn,
+  setActiveBtn,
 }) => {
+  const location = useLocation();
+  const parsed = qs.parse(location.search);
+
+  useEffect(() => {
+    getflightsList(parsed.date);
+  }, [searchDate]);
   return (
     <div className="navigation">
       <div className="navigation-btn">
@@ -20,25 +34,28 @@ const Navigation = ({
           <span className="icon-plane">
             <i className="fa-solid fa-plane-departure"></i>
           </span>
-          <Link to="/board/departures">DEPARTURES</Link>
+          <Link to={`/departures${searchDate ? `?date=${searchDate}` : ''}`}>DEPARTURES</Link>
         </button>
         <button
           onClick={() => {
-            setIsActive(false);
             setArrivals('white');
             setDepartures('');
           }}
           className={`navigation_arrivals ${arrivals} `}
         >
-          <Link to="/board/arrival">ARRIVALS</Link>
+          <Link to={`/arrival${searchDate ? `?date=${searchDate}` : ''}`}>ARRIVALS</Link>
 
           <span className="icon-plane">
             <i className="fas fa-plane-arrival"></i>
           </span>
         </button>
       </div>
+
       <Calendar
-        calendarDate={calendarDate}
+        activeBtn={activeBtn}
+        setActiveBtn={setActiveBtn}
+        setSearchDate={setSearchDate}
+        searchDate={searchDate}
         handleClick={handleClick}
         onChangeCalendarDate={onChangeCalendarDate}
         handleGetDate={handleGetDate}

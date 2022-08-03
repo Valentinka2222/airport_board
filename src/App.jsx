@@ -1,43 +1,51 @@
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import * as qs from 'query-string';
+import moment from 'moment';
+
 import Navigation from './components/Navigation';
 import SearchFlights from './components/SearchFlights';
-
 import BoardArrival from './components/BoardArrival';
 import BoardDepartures from './components/BoardDepartures';
-import { fetchFlightsListByDate } from './flights/flightsGetWay';
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+
+import { getflightsList } from './flights/flights.action';
 import store from './store';
 
 const App = () => {
+  const [activeBtn, setActiveBtn] = useState(false);
   const [value, setValue] = useState('');
   const [departures, setDepartures] = useState('');
-  const [isActive, setIsActive] = useState(false);
   const [arrivals, setArrivals] = useState(false);
   const [searchDate, setSearchDate] = useState(`${moment().format('DD-MM-YYYY')}`);
-  const [calendarDate, setCalendarDate] = useState(`${moment().format('DD/MM/YY')}`);
+
+  const location = useLocation();
+  const parsed = qs.parse(location.search);
+  useEffect(() => {
+    getflightsList(parsed.date);
+    setSearchDate(parsed.date);
+  }, [parsed.date]);
+
+  console.log(parsed.date);
+  console.log(searchDate);
+  console.log(location);
   const handleClick = () => {
     setDepartures('white');
     setArrivals('');
-    setIsActive(true);
   };
   const onChangeCalendarDate = e => {
-    setSearchDate(e.target.value);
-    fetchFlightsListByDate(e.target.value);
-    setCalendarDate(`${moment(new Date(e.target.value)).format('DD/MM/YY')}`);
+    setSearchDate(`${moment(e.target.value).format('DD-MM-YYYY')}`);
   };
 
   const handleGetDate = e => {
-    setSearchDate(e.target.dataset.date);
-    setCalendarDate(`${moment(new Date(e.target.dataset.date)).format('DD/MM/YY')}`);
-
-    fetchFlightsListByDate(e.target.dataset.date);
+    console.log(e.target.dataset.date);
+    setSearchDate(`${moment(e.target.dataset.date).format('DD-MM-YYYY')}`);
   };
+
   return (
     <Provider store={store}>
       <Switch>
-        <Route path="/board">
+        <Route path="/">
           <div className="search">
             <SearchFlights
               setValue={setValue}
@@ -48,10 +56,11 @@ const App = () => {
               setDepartures={setDepartures}
               handleClick={handleClick}
             />
-            <Route path="/board">
+            <Route path="/">
               <Navigation
-                setIsActive={setIsActive}
-                calendarDate={calendarDate}
+                activeBtn={activeBtn}
+                setActiveBtn={setActiveBtn}
+                searchDate={searchDate}
                 onChangeCalendarDate={onChangeCalendarDate}
                 handleGetDate={handleGetDate}
                 handleClick={handleClick}
@@ -62,10 +71,10 @@ const App = () => {
               />
             </Route>
 
-            <Route path="/board/departures">
+            <Route path="/departures">
               <BoardDepartures searchDate={searchDate} value={value} setValue={setValue} />
             </Route>
-            <Route path="/board/arrival">
+            <Route path="/arrival">
               <BoardArrival searchDate={searchDate} value={value} setValue={setValue} />
             </Route>
           </div>

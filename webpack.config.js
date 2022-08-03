@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-let qs = require('qs');
+let qs = require('query-string');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
