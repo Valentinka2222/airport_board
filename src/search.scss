@@ -35,18 +35,6 @@
   }
 }
 
-.title {
-  display: flex;
-  font-family: 'Open Sans';
-  margin-right: auto;
-  text-align: center;
-  line-height: 80px;
-  font-size: 60px;
-  font-weight: 300;
-  color: #2f2f2f;
-  margin: 0px 0px 8px;
-}
-
 .search-btn {
   cursor: pointer;
   border-radius: 0 80px 0 0;
@@ -83,19 +71,5 @@
     font-size: 18px;
     font-family: 'Open Sans';
     border: none;
-  }
-}
-.logo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  text-overflow: clip;
-  max-width: 110px;
-  white-space: nowrap;
-  padding: 10px;
-  &:hover {
-    overflow: visible;
   }
 }
