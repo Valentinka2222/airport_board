@@ -6,9 +6,9 @@ import * as qs from 'query-string';
 
 import BoardTable from './BoardTable';
 
-import { flightListDepartureSelector } from '../flights/flights.selector';
-import { getflightsList } from '../flights/flights.action';
-import { Columns } from '../columns';
+import { flightListDepartureSelector } from './../../flights/flights.selector';
+import { getflightsList } from './../../flights/flights.action';
+import { Columns } from './../../columns';
 
 const BoardDepartures = ({ departureList, value, searchDate, getflightsList }) => {
   const location = useLocation();

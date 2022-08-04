@@ -6,8 +6,8 @@ import * as qs from 'query-string';
 
 import Days from './Days';
 
-import { getflightsList } from '../flights/flights.action';
-import '../calendar.scss';
+import { getflightsList } from '../../flights/flights.action';
+import './calendar.scss';
 
 const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate, isActiveId }) => {
   const location = useLocation();

@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 import * as qs from 'query-string';
 import moment from 'moment';
 
-import Navigation from './components/Navigation';
-import SearchFlights from './components/SearchFlights';
-import BoardArrival from './components/BoardArrival';
-import BoardDepartures from './components/BoardDepartures';
+import Navigation from './components/navigation/Navigation';
+import SearchFlights from './components/search/SearchFlights';
+import BoardArrival from './components/board/BoardArrival';
+import BoardDepartures from './components/board/BoardDepartures';
 
 import { getflightsList } from './flights/flights.action';
 import store from './store';

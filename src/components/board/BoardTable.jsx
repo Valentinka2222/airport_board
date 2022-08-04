@@ -1,7 +1,8 @@
-import { Columns } from '../columns';
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+
+import { Columns } from './../../columns';
 
 const BoardTable = ({ renderFlights }) => {
   return (
