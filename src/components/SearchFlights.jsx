@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const SearchFlights = ({ setValue, value, handleClick }) => {
@@ -30,5 +31,9 @@ const SearchFlights = ({ setValue, value, handleClick }) => {
     </div>
   );
 };
-
+SearchFlights.propTypes = {
+  value: PropTypes.string,
+  setValue: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
 export default SearchFlights;

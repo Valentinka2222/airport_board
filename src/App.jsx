@@ -16,19 +16,25 @@ const App = () => {
   const [activeBtn, setActiveBtn] = useState(false);
   const [value, setValue] = useState('');
   const [departures, setDepartures] = useState('');
-  const [arrivals, setArrivals] = useState(false);
+  const [arrivals, setArrivals] = useState('');
   const [searchDate, setSearchDate] = useState(`${moment().format('DD-MM-YYYY')}`);
-
+  const [isActiveId, setIsActiveId] = useState('');
   const location = useLocation();
   const parsed = qs.parse(location.search);
+
   useEffect(() => {
     getflightsList(parsed.date);
     setSearchDate(parsed.date);
+    if (location.pathname.slice(1, 9) === 'arrival') {
+      setArrivals('white');
+      setDepartures('');
+    }
+    if (location.pathname.slice(1, 11) === 'departures') {
+      setDepartures('white');
+      setArrivals('');
+    }
   }, [parsed.date]);
 
-  console.log(parsed.date);
-  console.log(searchDate);
-  console.log(location);
   const handleClick = () => {
     setDepartures('white');
     setArrivals('');
@@ -38,8 +44,8 @@ const App = () => {
   };
 
   const handleGetDate = e => {
-    console.log(e.target.dataset.date);
     setSearchDate(`${moment(e.target.dataset.date).format('DD-MM-YYYY')}`);
+    setIsActiveId(e.target.dataset.id);
   };
 
   return (
@@ -58,6 +64,7 @@ const App = () => {
             />
             <Route path="/">
               <Navigation
+                isActiveId={isActiveId}
                 activeBtn={activeBtn}
                 setActiveBtn={setActiveBtn}
                 searchDate={searchDate}
@@ -83,4 +90,5 @@ const App = () => {
     </Provider>
   );
 };
+
 export default App;

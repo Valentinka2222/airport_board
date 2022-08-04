@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as qs from 'query-string';
 
 import { getflightsList } from '../flights/flights.action';
@@ -18,8 +19,7 @@ const Navigation = ({
   arrivals,
   departures,
   searchDate,
-  activeBtn,
-  setActiveBtn,
+  isActiveId,
 }) => {
   const location = useLocation();
   const parsed = qs.parse(location.search);
@@ -52,8 +52,7 @@ const Navigation = ({
       </div>
 
       <Calendar
-        activeBtn={activeBtn}
-        setActiveBtn={setActiveBtn}
+        isActiveId={isActiveId}
         setSearchDate={setSearchDate}
         searchDate={searchDate}
         handleClick={handleClick}
@@ -62,6 +61,19 @@ const Navigation = ({
       />
     </div>
   );
+};
+
+Navigation.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  handleGetDate: PropTypes.func.isRequired,
+  onChangeCalendarDate: PropTypes.func.isRequired,
+  setSearchDate: PropTypes.func,
+  setDepartures: PropTypes.func.isRequired,
+  setArrivals: PropTypes.func.isRequired,
+  isActiveId: PropTypes.string,
+  searchDate: PropTypes.string,
+  arrivals: PropTypes.string,
+  departures: PropTypes.string,
 };
 
 export default Navigation;

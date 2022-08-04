@@ -10,7 +10,7 @@ import { getflightsList } from '../flights/flights.action';
 import BoardTable from './BoardTable';
 import { Columns } from '../columns';
 
-const BoardArrival = ({ arrival, value, searchDate, getflightsList }) => {
+const BoardArrival = ({ arrivalList, value, searchDate, getflightsList }) => {
   const location = useLocation();
   const parsed = qs.parse(location.search);
 
@@ -18,7 +18,7 @@ const BoardArrival = ({ arrival, value, searchDate, getflightsList }) => {
     getflightsList(parsed.date);
   }, [searchDate]);
 
-  let renderFlights = arrival.map((row, index) => {
+  let renderFlights = arrivalList.map((row, index) => {
     Columns.map((col, index) => {
       if (col.name === 'Destination') {
         col.accessor = 'airportFromID.city_en';
@@ -57,8 +57,14 @@ const mapDispatch = {
 
 const mapState = state => {
   return {
-    arrival: flightListArrivalSelector(state),
+    arrivalList: flightListArrivalSelector(state),
   };
 };
 
+BoardArrival.propTypes = {
+  value: PropTypes.string,
+  searchDate: PropTypes.string,
+  getflightsList: PropTypes.func.isRequired,
+  arrivalList: PropTypes.array,
+};
 export default connect(mapState, mapDispatch)(BoardArrival);

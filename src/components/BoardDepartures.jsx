@@ -10,7 +10,7 @@ import { flightListDepartureSelector } from '../flights/flights.selector';
 import { getflightsList } from '../flights/flights.action';
 import { Columns } from '../columns';
 
-const BoardDepartures = ({ departure, value, searchDate, getflightsList }) => {
+const BoardDepartures = ({ departureList, value, searchDate, getflightsList }) => {
   const location = useLocation();
   const parsed = qs.parse(location.search);
 
@@ -18,7 +18,7 @@ const BoardDepartures = ({ departure, value, searchDate, getflightsList }) => {
     getflightsList(parsed.date);
   }, [searchDate]);
 
-  let renderFlights = departure.map((row, index) => {
+  let renderFlights = departureList.map((row, index) => {
     Columns.map((col, index) => {
       if (col.name === 'Destination') {
         col.accessor = 'airportToID.city_en';
@@ -56,8 +56,15 @@ const mapDispatch = {
 
 const mapState = state => {
   return {
-    departure: flightListDepartureSelector(state),
+    departureList: flightListDepartureSelector(state),
   };
+};
+
+BoardDepartures.propTypes = {
+  value: PropTypes.string,
+  searchDate: PropTypes.string,
+  getflightsList: PropTypes.func.isRequired,
+  departureList: PropTypes.array,
 };
 
 export default connect(mapState, mapDispatch)(BoardDepartures);

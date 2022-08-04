@@ -1,6 +1,6 @@
 import { Columns } from '../columns';
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const BoardTable = ({ renderFlights }) => {
@@ -66,5 +66,9 @@ const BoardTable = ({ renderFlights }) => {
       </tbody>
     </table>
   );
+};
+
+BoardTable.propTypes = {
+  renderFlights: PropTypes.array,
 };
 export default BoardTable;
