@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import '../search.scss';
+
 const SearchFlights = ({ setValue, value, handleClick }) => {
   return (
     <div className="search-flights">

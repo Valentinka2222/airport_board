@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import * as qs from 'query-string';
 
 import { getflightsList } from '../flights/flights.action';
-
 import Calendar from './Calendar';
+
 import '../navigation.scss';
 
 const Navigation = ({

@@ -13,7 +13,6 @@ import { getflightsList } from './flights/flights.action';
 import store from './store';
 
 const App = () => {
-  const [activeBtn, setActiveBtn] = useState(false);
   const [value, setValue] = useState('');
   const [departures, setDepartures] = useState('');
   const [arrivals, setArrivals] = useState('');
@@ -65,8 +64,6 @@ const App = () => {
             <Route path="/">
               <Navigation
                 isActiveId={isActiveId}
-                activeBtn={activeBtn}
-                setActiveBtn={setActiveBtn}
                 searchDate={searchDate}
                 onChangeCalendarDate={onChangeCalendarDate}
                 handleGetDate={handleGetDate}

@@ -2,8 +2,6 @@ import moment from 'moment';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../calendar.scss';
-
 export const Days = ({ text, dayDate, isActiveId, id }) => {
   return (
     <div
