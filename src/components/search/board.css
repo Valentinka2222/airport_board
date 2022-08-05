@@ -1,0 +1,76 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-top: 117px;
+  flex-wrap: nowrap;
+}
+
+.board_table {
+  text-indent: initial;
+  border-collapse: collapse;
+  border: 0;
+  height: 80px;
+  background-color: #fff;
+  padding: 0 30px;
+  white-space: nowrap;
+}
+
+.board_table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.board_table th {
+  background-color: #fff !important;
+  color: lightgrey;
+  border: 0;
+  height: 80px;
+  background-color: #fff;
+  padding: 0;
+}
+
+.board_table tr {
+  border-collapse: collapse;
+  padding: 0;
+  border: 0;
+  padding: 0 30px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.board_table td {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: wrap;
+}
+
+.board_table td:hover {
+  overflow: visible;
+}
+
+.board_table__head {
+  background-color: #f2f2f2 !important;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: clip;
+  max-width: 110px;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+.logo:hover {
+  overflow: visible;
+}
+
+.logo-airlines {
+  width: 70px;
+  height: 50px;
+}

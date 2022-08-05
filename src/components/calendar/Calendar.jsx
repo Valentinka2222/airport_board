@@ -29,7 +29,7 @@ const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate
           id={'one'}
           searchDate={searchDate}
           text={'YESTERDAY'}
-          dayDate={`${moment().add(-1, 'day')}`}
+          dayDate={`${moment().add(-1, 'day').format('DD-MM-YYYY')}`}
         />
         <Link onClick={handleClick} to={`/departures${searchDate ? `?date=${searchDate}` : ''}`}>
           <Days
@@ -37,7 +37,7 @@ const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate
             id={'two'}
             searchDate={searchDate}
             text={'TODAY'}
-            dayDate={`${moment()}`}
+            dayDate={`${moment().format('DD-MM-YYYY')}`}
           />
         </Link>
         <Days
@@ -45,7 +45,7 @@ const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate
           id={'three'}
           searchDate={searchDate}
           text={'TOMORROW'}
-          dayDate={`${moment().add(1, 'day')}`}
+          dayDate={`${moment().add(1, 'day').format('DD-MM-YYYY')}`}
         />
       </div>
     </div>

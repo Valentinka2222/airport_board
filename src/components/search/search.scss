@@ -73,3 +73,23 @@
     border: none;
   }
 }
+.icon-seach {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  height: 44px;
+  width: 44px;
+}
+.title {
+  display: flex;
+  font-family: 'Open Sans';
+  margin-right: auto;
+  text-align: center;
+  line-height: 80px;
+  font-size: 60px;
+  font-weight: 300;
+  color: #2f2f2f;
+  margin: 0px 0px 8px;
+}

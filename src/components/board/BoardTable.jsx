@@ -5,6 +5,15 @@ import moment from 'moment';
 import { Columns } from './../../columns';
 
 const BoardTable = ({ renderFlights }) => {
+  let url;
+  const getUrl = logo => {
+    if (!logo) {
+      return;
+    }
+    url = `https://api.iev.aero${logo}`;
+    return url;
+  };
+
   return (
     <table className="board_table">
       <thead>
@@ -46,7 +55,7 @@ const BoardTable = ({ renderFlights }) => {
                       </span>
                       <img
                         className="logo-airlines"
-                        src={`https://api.iev.aero${row.codeShareData[0].logo}`}
+                        src={getUrl(row.codeShareData[0].logo)}
                         alt="Logo"
                       />
                     </td>

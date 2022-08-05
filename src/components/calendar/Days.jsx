@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,7 +8,7 @@ export const Days = ({ text, dayDate, isActiveId, id }) => {
       data-id={id}
       className={`calendar_dates__day ${isActiveId === id ? 'border-blue' : ''}`}
     >
-      {moment(dayDate.toString()).format('DD/MM')}
+      {dayDate.slice(0, 5)}
       <span data-id={id} data-date={dayDate} className="calendar_dates__name-day">
         {text}
       </span>

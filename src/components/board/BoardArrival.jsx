@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as qs from 'query-string';
 
 import { flightListArrivalSelector } from './../../flights/flights.selector';
 import { getflightsList } from './../../flights/flights.action';
@@ -11,11 +9,8 @@ import BoardTable from './BoardTable';
 import { Columns } from './../../columns';
 
 const BoardArrival = ({ arrivalList, value, searchDate, getflightsList }) => {
-  const location = useLocation();
-  const parsed = qs.parse(location.search);
-
   useEffect(() => {
-    getflightsList(parsed.date);
+    getflightsList(searchDate);
   }, [searchDate]);
 
   let renderFlights = arrivalList.map((row, index) => {

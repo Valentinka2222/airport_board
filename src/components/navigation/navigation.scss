@@ -11,6 +11,7 @@
   align-items: center;
   font-size: 16px;
   font-weight: 600;
+
   cursor: pointer;
   margin-top: 20px;
 
@@ -24,12 +25,13 @@
     transition: 0.3s ease-in-out;
     z-index: 1;
     line-height: 60px;
-    color: #fff;
+
     background-attachment: fixed;
     border-top-left-radius: 8.25rem;
     border-top-right-radius: 8.25rem;
     background-color: #1eb7ee;
     text-align: center;
+    color: #fff;
   }
 
   &_arrivals {
@@ -52,6 +54,7 @@
 a {
   text-decoration: none;
 }
+
 .navigation-btn {
   display: flex;
 }
@@ -62,4 +65,8 @@ a {
   color: #1eb7ee;
   z-index: 3;
   transition: 0.3s ease-in-out;
+}
+.icon-plane {
+  font-size: 20px;
+  padding: 15px;
 }

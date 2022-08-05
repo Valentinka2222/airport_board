@@ -14,9 +14,11 @@ import store from './store';
 
 const App = () => {
   const [value, setValue] = useState('');
+  const [activeLinkArrival, setActiveLinkArrival] = useState('link-white');
+  const [activeLinkDepartures, setActiveLinkDepartures] = useState('link-white');
   const [departures, setDepartures] = useState('');
   const [arrivals, setArrivals] = useState('');
-  const [searchDate, setSearchDate] = useState(`${moment().format('DD-MM-YYYY')}`);
+  const [searchDate, setSearchDate] = useState(moment().format('DD-MM-YYYY'));
   const [isActiveId, setIsActiveId] = useState('');
   const location = useLocation();
   const parsed = qs.parse(location.search);
@@ -27,10 +29,14 @@ const App = () => {
     if (location.pathname.slice(1, 9) === 'arrival') {
       setArrivals('white');
       setDepartures('');
+      setActiveLinkArrival('link-blue');
+      setActiveLinkDepartures('link-white');
     }
     if (location.pathname.slice(1, 11) === 'departures') {
       setDepartures('white');
       setArrivals('');
+      setActiveLinkArrival('link-white');
+      setActiveLinkDepartures('link-blue');
     }
   }, [parsed.date]);
 
@@ -39,11 +45,12 @@ const App = () => {
     setArrivals('');
   };
   const onChangeCalendarDate = e => {
-    setSearchDate(`${moment(e.target.value).format('DD-MM-YYYY')}`);
+    setIsActiveId('');
+    setSearchDate(moment(e.target.value).format('DD-MM-YYYY'));
   };
 
   const handleGetDate = e => {
-    setSearchDate(`${moment(e.target.dataset.date).format('DD-MM-YYYY')}`);
+    setSearchDate(e.target.dataset.date);
     setIsActiveId(e.target.dataset.id);
   };
 
@@ -63,6 +70,12 @@ const App = () => {
             />
             <Route path="/">
               <Navigation
+                setIsActiveId={setIsActiveId}
+                setSearchDate={setSearchDate}
+                setActiveLinkArrival={setActiveLinkArrival}
+                setActiveLinkDepartures={setActiveLinkDepartures}
+                activeLinkArrival={activeLinkArrival}
+                activeLinkDepartures={activeLinkDepartures}
                 isActiveId={isActiveId}
                 searchDate={searchDate}
                 onChangeCalendarDate={onChangeCalendarDate}

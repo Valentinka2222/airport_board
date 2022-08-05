@@ -11,11 +11,8 @@ import { getflightsList } from './../../flights/flights.action';
 import { Columns } from './../../columns';
 
 const BoardDepartures = ({ departureList, value, searchDate, getflightsList }) => {
-  const location = useLocation();
-  const parsed = qs.parse(location.search);
-
   useEffect(() => {
-    getflightsList(parsed.date);
+    getflightsList(searchDate);
   }, [searchDate]);
 
   let renderFlights = departureList.map((row, index) => {
