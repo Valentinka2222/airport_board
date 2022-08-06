@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as qs from 'query-string';
 
 import BoardTable from './BoardTable';
 
