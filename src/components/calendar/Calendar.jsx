@@ -1,21 +1,16 @@
 import moment from 'moment';
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as qs from 'query-string';
 
 import Days from './Days';
 
 import { getflightsList } from '../../flights/flights.action';
 import './calendar.scss';
 
-const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate, isActiveId }) => {
-  const location = useLocation();
-  const parsed = qs.parse(location.search);
-
+const Calendar = ({ handleGetDate, onChangeCalendarDate, searchDate, isActiveId }) => {
   useEffect(() => {
-    getflightsList(parsed.date);
-  }, [parsed.date]);
+    getflightsList(searchDate);
+  }, [searchDate]);
 
   return (
     <div className="calendar">
@@ -23,24 +18,27 @@ const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate
         <span className="calendar_span">{searchDate}</span>
         <input className="calendar_input" type="date" onChange={onChangeCalendarDate} />
       </div>
-      <div className="calendar_dates" onClick={handleGetDate}>
+      <div className="calendar_dates">
         <Days
+          handleGetDate={handleGetDate}
           isActiveId={isActiveId}
           id={'one'}
           searchDate={searchDate}
           text={'YESTERDAY'}
           dayDate={`${moment().add(-1, 'day').format('DD-MM-YYYY')}`}
         />
-        <Link onClick={handleClick} to={`/departures${searchDate ? `?date=${searchDate}` : ''}`}>
-          <Days
-            isActiveId={isActiveId}
-            id={'two'}
-            searchDate={searchDate}
-            text={'TODAY'}
-            dayDate={`${moment().format('DD-MM-YYYY')}`}
-          />
-        </Link>
+
         <Days
+          handleGetDate={handleGetDate}
+          isActiveId={isActiveId}
+          id={'two'}
+          searchDate={searchDate}
+          text={'TODAY'}
+          dayDate={`${moment().format('DD-MM-YYYY')}`}
+        />
+
+        <Days
+          handleGetDate={handleGetDate}
           isActiveId={isActiveId}
           id={'three'}
           searchDate={searchDate}
@@ -54,7 +52,6 @@ const Calendar = ({ handleClick, handleGetDate, onChangeCalendarDate, searchDate
 Calendar.propTypes = {
   isActiveId: PropTypes.string,
   searchDate: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
   handleGetDate: PropTypes.func.isRequired,
   onChangeCalendarDate: PropTypes.func.isRequired,
 };

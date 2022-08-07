@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { flightListArrivalSelector } from './../../flights/flights.selector';
 import { getflightsList } from './../../flights/flights.action';
+import { Columns } from './../../columns';
 
 import BoardTable from './BoardTable';
-import { Columns } from './../../columns';
 
 const BoardArrival = ({ arrivalList, value, searchDate, getflightsList }) => {
   useEffect(() => {

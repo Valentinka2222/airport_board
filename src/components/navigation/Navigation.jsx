@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as qs from 'query-string';
+
 import moment from 'moment';
 
 import { getflightsList } from '../../flights/flights.action';
@@ -25,11 +25,7 @@ const Navigation = ({
   setActiveLinkDepartures,
   activeLinkArrival,
   activeLinkDepartures,
-  handleClick,
 }) => {
-  const location = useLocation();
-  const parsed = qs.parse(location.search);
-
   useEffect(() => {
     if (searchDate === undefined) {
       setSearchDate(moment().format('DD-MM-YYYY'));
@@ -37,7 +33,7 @@ const Navigation = ({
     if (searchDate === moment().format('DD-MM-YYYY')) {
       setIsActiveId('two');
     }
-    getflightsList(parsed.date);
+    getflightsList(searchDate);
   }, [searchDate]);
   return (
     <div className="navigation">
@@ -87,7 +83,6 @@ const Navigation = ({
         isActiveId={isActiveId}
         setSearchDate={setSearchDate}
         searchDate={searchDate}
-        handleClick={handleClick}
         onChangeCalendarDate={onChangeCalendarDate}
         handleGetDate={handleGetDate}
       />
@@ -100,7 +95,7 @@ Navigation.propTypes = {
   setActiveLinkDepartures: PropTypes.func,
   activeLinkArrival: PropTypes.string,
   activeLinkDepartures: PropTypes.string,
-  handleClick: PropTypes.func.isRequired,
+
   handleGetDate: PropTypes.func.isRequired,
   onChangeCalendarDate: PropTypes.func.isRequired,
   setSearchDate: PropTypes.func,

@@ -80,7 +80,6 @@ const App = () => {
                 searchDate={searchDate}
                 onChangeCalendarDate={onChangeCalendarDate}
                 handleGetDate={handleGetDate}
-                handleClick={handleClick}
                 setArrivals={setArrivals}
                 departures={departures}
                 arrivals={arrivals}
