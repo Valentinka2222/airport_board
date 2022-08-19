@@ -7,7 +7,7 @@ import Days from './Days';
 import { getflightsList } from '../../flights/flights.action';
 import './calendar.scss';
 
-const Calendar = ({ handleGetDate, onChangeCalendarDate, searchDate, isActiveId }) => {
+const Calendar = ({ onChangeCalendarDate, searchDate, isActiveId, handleGetDate }) => {
   useEffect(() => {
     getflightsList(searchDate);
   }, [searchDate]);
@@ -23,7 +23,6 @@ const Calendar = ({ handleGetDate, onChangeCalendarDate, searchDate, isActiveId 
           handleGetDate={handleGetDate}
           isActiveId={isActiveId}
           id={'one'}
-          searchDate={searchDate}
           text={'YESTERDAY'}
           dayDate={`${moment().add(-1, 'day').format('DD-MM-YYYY')}`}
         />
@@ -32,7 +31,6 @@ const Calendar = ({ handleGetDate, onChangeCalendarDate, searchDate, isActiveId 
           handleGetDate={handleGetDate}
           isActiveId={isActiveId}
           id={'two'}
-          searchDate={searchDate}
           text={'TODAY'}
           dayDate={`${moment().format('DD-MM-YYYY')}`}
         />
@@ -41,7 +39,6 @@ const Calendar = ({ handleGetDate, onChangeCalendarDate, searchDate, isActiveId 
           handleGetDate={handleGetDate}
           isActiveId={isActiveId}
           id={'three'}
-          searchDate={searchDate}
           text={'TOMORROW'}
           dayDate={`${moment().add(1, 'day').format('DD-MM-YYYY')}`}
         />

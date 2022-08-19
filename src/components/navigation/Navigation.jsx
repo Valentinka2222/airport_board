@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import moment from 'moment';
 
 import { getflightsList } from '../../flights/flights.action';
@@ -11,6 +10,7 @@ import Calendar from '../calendar/Calendar';
 import './navigation.scss';
 
 const Navigation = ({
+  value,
   setIsActiveId,
   setSearchDate,
   onChangeCalendarDate,
@@ -52,7 +52,9 @@ const Navigation = ({
           </span>
           <Link
             className={activeLinkDepartures}
-            to={`/departures${searchDate ? `?date=${searchDate}` : ''}`}
+            to={`/departures${searchDate ? `?date=${searchDate}` : ''}&${
+              value ? `search=${value}` : ''
+            }`}
           >
             DEPARTURES
           </Link>
@@ -68,7 +70,9 @@ const Navigation = ({
         >
           <Link
             className={activeLinkArrival}
-            to={`/arrival${searchDate ? `?date=${searchDate}` : ''}`}
+            to={`/arrival${searchDate ? `?date=${searchDate}` : ''}&${
+              value ? `search=${value}` : ''
+            }`}
           >
             ARRIVALS
           </Link>
@@ -81,7 +85,6 @@ const Navigation = ({
 
       <Calendar
         isActiveId={isActiveId}
-        setSearchDate={setSearchDate}
         searchDate={searchDate}
         onChangeCalendarDate={onChangeCalendarDate}
         handleGetDate={handleGetDate}
@@ -91,14 +94,15 @@ const Navigation = ({
 };
 
 Navigation.propTypes = {
+  setIsActiveId: PropTypes.func.isRequired,
+  setSearchDate: PropTypes.func.isRequired,
   setActiveLinkArrival: PropTypes.func,
   setActiveLinkDepartures: PropTypes.func,
   activeLinkArrival: PropTypes.string,
   activeLinkDepartures: PropTypes.string,
-
+  value: PropTypes.string,
   handleGetDate: PropTypes.func.isRequired,
   onChangeCalendarDate: PropTypes.func.isRequired,
-  setSearchDate: PropTypes.func,
   setDepartures: PropTypes.func.isRequired,
   setArrivals: PropTypes.func.isRequired,
   isActiveId: PropTypes.string,

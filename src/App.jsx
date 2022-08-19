@@ -38,7 +38,7 @@ const App = () => {
       setActiveLinkArrival('link-white');
       setActiveLinkDepartures('link-blue');
     }
-  }, [parsed.date]);
+  }, [location]);
 
   const handleClick = () => {
     setDepartures('white');
@@ -60,6 +60,7 @@ const App = () => {
         <Route path="/">
           <div className="search">
             <SearchFlights
+              searchDate={searchDate}
               setValue={setValue}
               value={value}
               setArrivals={setArrivals}
@@ -70,6 +71,7 @@ const App = () => {
             />
             <Route path="/">
               <Navigation
+                value={value}
                 setIsActiveId={setIsActiveId}
                 setSearchDate={setSearchDate}
                 setActiveLinkArrival={setActiveLinkArrival}

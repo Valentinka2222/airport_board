@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import * as qs from 'query-string';
+
+import { getflightsList } from '../../flights/flights.action';
 
 import './search.scss';
 
-const SearchFlights = ({ setValue, value, handleClick }) => {
+const SearchFlights = ({ setValue, value, handleClick, searchDate }) => {
+  const location = useLocation();
+  const parsed = qs.parse(location);
+
+  useEffect(() => {
+    getflightsList(parsed.date);
+  }, [parsed.date]);
   return (
     <div className="search-flights">
       <h2 className="title">SEARCH FLIGHT</h2>
@@ -25,7 +35,9 @@ const SearchFlights = ({ setValue, value, handleClick }) => {
         <Link
           onClick={handleClick}
           className="search-btn"
-          to={`board/departures${value ? `?search=${value}` : ''}`}
+          to={`/departures${value ? `?search=${value}` : ''}&${
+            searchDate ? `date=${searchDate}` : ''
+          }`}
         >
           SEARCH
         </Link>
@@ -35,6 +47,7 @@ const SearchFlights = ({ setValue, value, handleClick }) => {
 };
 SearchFlights.propTypes = {
   value: PropTypes.string,
+  searchDate: PropTypes.string,
   setValue: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
