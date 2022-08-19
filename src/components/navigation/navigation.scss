@@ -1,62 +1,78 @@
+@import '../../breakpoints.scss';
+
 .navigation {
   display: flex;
   position: relative;
-  background-color: transparent;
-  line-height: 60px;
   justify-content: space-between;
-  list-style: none;
-  margin: auto;
-  width: 90%;
-  min-width: 150px;
   align-items: center;
+  width: 90vw;
+  margin: auto;
+  margin-top: 20px;
   font-size: 16px;
   font-weight: 600;
-
+  list-style: none;
+  background-color: transparent;
   cursor: pointer;
-  margin-top: 20px;
-
-  cursor: pointer;
-  &_departures {
-    border: none;
-    width: 58%;
+  @include for-large-up {
+    width: 90%;
+    min-width: 150px;
+    margin: auto;
+    margin-top: 20px;
     border-top-left-radius: 0.25rem;
-    position: absolute;
-    padding-right: 100px;
-    transition: 0.3s ease-in-out;
-    z-index: 1;
-    line-height: 60px;
-
-    background-attachment: fixed;
+    border-top-right-radius: 8.25rem;
     border-top-left-radius: 8.25rem;
     border-top-right-radius: 8.25rem;
-    background-color: #1eb7ee;
+  }
+
+  &_departures {
+    position: absolute;
     text-align: center;
+    width: 58vw;
+    line-height: 63px;
+    padding-right: 100px;
+    border: none;
+    border-top-right-radius: 8.25rem;
+    border-top-left-radius: 8.25rem;
     color: #fff;
+    background-attachment: fixed;
+    background-color: #1eb7ee;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+
+    @include for-large-up {
+      width: 58%;
+      border-top-right-radius: 8.25rem;
+      border-top-left-radius: 8.25rem;
+    }
   }
 
   &_arrivals {
     position: absolute;
     right: 0;
-    z-index: 2;
-    width: 58%;
+    line-height: 63px;
+    min-width: 58vw;
+    padding-left: 100px;
+    text-align: center;
+    border: none;
     border-top-left-radius: 8.25rem;
     border-top-right-radius: 8.25rem;
-    padding-left: 100px;
-    position: absolute;
-    border: none;
-    transition: 0.3s ease-in-out;
-    line-height: 60px;
     color: #fff;
     background-color: #1eb7ee;
-    text-align: center;
+    transition: 0.3s ease-in-out;
+    z-index: 2;
+
+    @include for-large-up {
+      border-top-left-radius: 8.25rem;
+      border-top-right-radius: 8.25rem;
+      width: 58%;
+    }
   }
-}
-a {
-  text-decoration: none;
 }
 
 .navigation-btn {
   display: flex;
+  width: 100vw;
+  background-color: transparent;
 }
 .white {
   border-top-left-radius: 8.25rem;
@@ -67,6 +83,6 @@ a {
   transition: 0.3s ease-in-out;
 }
 .icon-plane {
-  font-size: 20px;
   padding: 15px;
+  font-size: 20px;
 }

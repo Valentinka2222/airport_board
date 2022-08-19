@@ -1,54 +1,54 @@
 .calendar {
   display: flex;
-  padding: 0;
+  position: absolute;
+  top: 62px;
+  width: 100%;
+  height: 55px;
+  margin: auto;
+  padding-bottom: 40px;
+  text-align: center;
   font-size: 12px;
   font-weight: 700;
   background-color: #fff;
   color: #1eb7ee !important;
-  text-align: center;
-  height: auto;
-  margin: auto;
-  padding-bottom: 40px;
-  width: 100%;
-  height: 55px;
-  position: absolute;
-  top: 62px;
+
   &_picker {
     display: flex;
     padding: 0;
   }
   &_input {
     display: flex;
+    justify-content: center;
     width: 100%;
-    height: 40px;
-    font-size: 40px;
-    background-color: #1eb7ee;
-    color: #fff;
+    height: 35px;
+    font-size: 35px;
     border: none;
     outline: none;
-    justify-content: center;
+    background-color: #1eb7ee;
+    color: #fff;
   }
   &_span {
     display: flex;
+    line-height: 20px;
     padding: 0;
     margin: 0;
-    line-height: 15px;
     padding-left: 7px;
   }
   &_dates {
     display: flex;
+    height: 55px;
     width: 40%;
     line-height: 15px;
-    height: 55px;
+
     &__day {
       display: flex;
-      padding: 0;
-      flex: 1;
-      color: #1eb7ee;
       flex-direction: column;
       align-items: center;
       height: 55px;
       width: 100px;
+      padding: 5px;
+      flex: 1;
+      color: #1eb7ee;
     }
     &__name-day {
       display: flex;

@@ -1,3 +1,5 @@
+@import './common.scss';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,49 +9,10 @@ body {
   width: 100%;
   background-color: #e7efec;
 }
-.span {
-  line-height: 300px;
-  width: 100%;
-  background-color: #fff;
-  color: black;
-  font-size: 25px;
-  font-weight: 700;
-  margin: 0;
-  text-align: center;
-  padding: auto;
-}
+
 button {
   padding: 0;
 }
-.grey {
-  background-color: #c7dedd;
-}
-.white {
-  background-color: #fff;
-}
-.blue {
-  background-color: #1eb7ee;
-}
-.light-grey {
-  color: #c0c0c0;
-  font-weight: 150;
-  font-size: 13px;
-}
-
-.border-blue {
-  border-bottom: solid #1eb7ee 3px;
-}
-.link-white {
-  border: none;
-  color: #fff;
-  & a {
-    color: #1eb7ee !important;
-  }
-}
-.link-blue {
-  border: none;
-  color: #1eb7ee;
-  & a {
-    color: #fff !important;
-  }
+a {
+  text-decoration: none;
 }

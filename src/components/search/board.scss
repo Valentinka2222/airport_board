@@ -1,50 +1,69 @@
+@import '../../breakpoints.scss';
+
 .board {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: auto;
-  margin-top: 117px;
   flex-wrap: nowrap;
+  width: 100vw;
+  margin-top: 117px;
+
+  @include for-large-up {
+    width: 90%;
+    margin: auto;
+    margin-top: 117px;
+  }
   &_table {
-    text-indent: initial;
+    height: 80px;
+    padding: 0 30px;
     border-collapse: collapse;
     border: 0;
-    height: 80px;
+    text-indent: initial;
     background-color: #fff;
-    padding: 0 30px;
-    white-space: nowrap;
+
+    @include for-large-up {
+      white-space: nowrap;
+    }
 
     & tr:nth-child(odd) {
       background-color: #f2f2f2;
     }
     & th {
+      width: 5vw;
+      height: 80px;
+      border: 0;
+      padding: 0;
       background-color: #fff !important;
       color: lightgrey;
-      border: 0;
-      height: 80px;
-      background-color: #fff;
-      padding: 0;
     }
 
     & tr {
-      border-collapse: collapse;
+      width: 100vw;
       padding: 0;
+      padding-right: 30px;
       border: 0;
-      padding: 0 30px;
-      min-width: 60px;
+      border-collapse: collapse;
       text-align: center;
+      @include for-large-up {
+        min-width: 60px;
+      }
     }
     & td {
-      max-width: 110px;
+      min-width: 5vw;
+      margin: auto;
       overflow: hidden;
       text-overflow: clip;
       white-space: wrap;
+
+      @include for-large-up {
+        max-width: 110px;
+      }
       &:hover {
         overflow: visible;
       }
     }
   }
   &_table__head {
+    width: 100vw;
     background-color: #f2f2f2 !important;
   }
 }
@@ -53,11 +72,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 110px;
+  padding: 10px;
   overflow: hidden;
   text-overflow: clip;
-  max-width: 110px;
   white-space: nowrap;
-  padding: 10px;
+
   &:hover {
     overflow: visible;
   }
