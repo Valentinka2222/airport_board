@@ -26,7 +26,7 @@ const SearchFlights = ({ setValue, value, handleClick, searchDate }) => {
           <input
             className="search-input"
             type="text"
-            placeholder="Airline, destination or flight #"
+            placeholder="Airline, flight number #"
             onChange={e => setValue(e.target.value)}
             value={value}
           />
